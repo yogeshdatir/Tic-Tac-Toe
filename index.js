@@ -1,16 +1,20 @@
 var clicks = 0;
 var sumd1 = 0;
+var is_gameover = false;
+var winner = "";
 function mark(id) {
-  if(document.getElementById(id).innerHTML == "") {
-    var symbol = "X";
-    if(clicks%2==0) {
-      symbol = "X";
-    } else {
-      symbol = "O";
-    }
-    document.getElementById(id).innerHTML = symbol;
+  if(!is_gameover) {
+    if(document.getElementById(id).innerHTML == "") {
+      var symbol = "X";
+      if(clicks%2==0) {
+        symbol = "X";
+      } else {
+        symbol = "O";
+      }
+      document.getElementById(id).innerHTML = symbol;
 
-    clicks++;
+      clicks++;
+    }
   }
 }
 
@@ -31,6 +35,11 @@ function check() {
         }
         if(count == 3) {
           console.log(first+" wins.");
+          is_gameover = true;
+          winner += first;
+          console.log(winner);
+          show_winner();
+          return;
         }
       }
     }
@@ -47,6 +56,11 @@ function check() {
         }
         if(count==3) {
           console.log(first+" wins.");
+          is_gameover = true;
+          winner += first;
+          console.log(winner);
+          show_winner();
+          return;
         }
       }
     }
@@ -69,6 +83,11 @@ function check() {
           }
           if(c == 3) {
             console.log(f+" wins.");
+            is_gameover = true;
+            winner += f;
+            console.log(winner);
+            show_winner();
+            return;
           }
         }
       }
@@ -81,6 +100,11 @@ function check() {
           }
           if(c2==3) {
             console.log(f2+" wins.");
+            is_gameover = true;
+            winner += f2;
+            console.log(winner);
+            show_winner();
+            return;
           }
         }
       }
@@ -88,4 +112,10 @@ function check() {
     
   }
 //  console.log("running");
+}
+
+function show_winner() {
+  if(winner != "") {
+    document.getElementById("result").innerHTML = "Yay!!! " +winner+ " is the winner.";
+  }
 }
