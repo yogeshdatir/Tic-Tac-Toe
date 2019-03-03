@@ -1,27 +1,44 @@
 <html>
-  <head>
-    <link href="index.css" rel=stylesheet>
-  </head>
-  <body>
-    
-    <br>
-    <h1 id="title">Tic Tac Toe</h1>
-    <!--<div id="mainbox">
+
+<head>
+  <link href="index.css" rel=stylesheet>
+</head>
+
+<body>
+
+  <br>
+  <h1 id="title">Tic Tac Toe</h1>
+  <!--<div id="mainbox">
       <div name="box1" class="row1"></div><div name="box2" class="row1"></div><div name="box3" class="row1"></div>
       <div name="box4" class="row2"></div><div name="box5" class="row2"></div><div name="box6" class="row2"></div>
       <div name="box7" class="row3"></div><div name="box8" class="row3"></div><div name="box9" class="row3"></div>
     </div>-->
-    
-<!--    <div id="selction" align="center"><label>Select your symbol: </label><button id="select_x">X</button><button id="select_o">O</button></div>-->
-    <br>
-    <table id="mainbox" align=center>
-      <tr><td id="box11" onclick="mark('box11'); check();"></td><td id="box12" onclick="mark('box12'); check();"></td><td id="box13" onclick="mark('box13'); check();"></td></tr>
-      <tr><td id="box21" onclick="mark('box21'); check();"></td><td id="box22" onclick="mark('box22'); check();"></td><td id="box23" onclick="mark('box23'); check();"></td></tr>
-      <tr><td id="box31" onclick="mark('box31'); check();"></td><td id="box32" onclick="mark('box32'); check();"></td><td id="box33" onclick="mark('box33'); check();"></td></tr>
-    </table>
-      <h1 id="result"></h1>
-    
-    <script src="index.js"></script>
-  </body>
+
+  <!--    <div id="selction" align="center"><label>Select your symbol: </label><button id="select_x">X</button><button id="select_o">O</button></div>-->
+  <br>
+  <table id="mainbox" align=center>
+    <tr>
+      <td id="box11" onclick="mark('box11'); mark_ai(); check();"></td>
+      <td id="box12" onclick="mark('box12'); mark_ai(); check();"></td>
+      <td id="box13" onclick="mark('box13'); mark_ai(); check();"></td>
+    </tr>
+    <tr>
+      <td id="box21" onclick="mark('box21'); mark_ai(); check();"></td>
+      <td id="box22" onclick="mark('box22'); mark_ai(); check();"></td>
+      <td id="box23" onclick="mark('box23'); mark_ai(); check();"></td>
+    </tr>
+    <tr>
+      <td id="box31" onclick="mark('box31'); check();"></td>
+      <td id="box32" onclick="mark('box32'); mark_ai(); check();"></td>
+      <td id="box33" onclick="mark('box33'); mark_ai(); check();"></td>
+    </tr>
+  </table>
+  <div id="buttons_box">
+    <button id="reset_button" onClick="reset_game()"> Reset Game </button>
+  </div>
+  <h1 id="result"></h1>
+
+  <script src="index.js"></script>
+</body>
 
 </html>

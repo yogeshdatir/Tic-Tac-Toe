@@ -28,3 +28,12 @@ td {
 #selection {
   display: inline-block;
 }
+
+#buttons_box {
+  display: flex;
+  justify-content: center;
+}
+
+#reset_button {
+  margin: 5px;
+}

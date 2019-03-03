@@ -2,11 +2,12 @@ var clicks = 0;
 var sumd1 = 0;
 var is_gameover = false;
 var winner = "";
+
 function mark(id) {
-  if(!is_gameover) {
-    if(document.getElementById(id).innerHTML == "") {
+  if (!is_gameover) {
+    if (document.getElementById(id).innerHTML == "") {
       var symbol = "X";
-      if(clicks%2==0) {
+      if (clicks % 2 == 0) {
         symbol = "X";
       } else {
         symbol = "O";
@@ -21,22 +22,22 @@ function mark(id) {
 //document.getElementById("mainbox").addEventListener('click', check());
 
 function check() {
-  for(i=1;i<4;i++) {
+  for (i = 1; i < 4; i++) {
     let first = "";
     let count = 1;
-    for(j=1;j<4;j++) {
-      if(j==1) {
-        first = document.getElementById("box"+i+j).innerHTML;
-//        console.log(first=="X");
+    for (j = 1; j < 4; j++) {
+      if (j == 1) {
+        first = document.getElementById("box" + i + j).innerHTML;
+        //        console.log(first=="X");
       } else {
-        if(first != "" && first == document.getElementById("box"+i+j).innerHTML) {
+        if (first != "" && first == document.getElementById("box" + i + j).innerHTML) {
           count++;
-//          console.log(first == document.getElementById("box"+i+j).innerHTML);
+          //          console.log(first == document.getElementById("box"+i+j).innerHTML);
         }
-        if(count == 3) {
-          console.log(first+" wins.");
+        if (count == 3) {
+          console.log(first + " wins.");
           is_gameover = true;
-          winner += first;
+          winner = first;
           console.log(winner);
           show_winner();
           return;
@@ -44,20 +45,20 @@ function check() {
       }
     }
   }
-  for(j=1;j<4;j++) {
+  for (j = 1; j < 4; j++) {
     let first = "";
     let count = 1;
-    for(i=1;i<4;i++) {
-      if(i==1) {
-        first = document.getElementById("box"+i+j).innerHTML;
+    for (i = 1; i < 4; i++) {
+      if (i == 1) {
+        first = document.getElementById("box" + i + j).innerHTML;
       } else {
-        if(first != "" && first == document.getElementById("box"+i+j).innerHTML) {
+        if (first != "" && first == document.getElementById("box" + i + j).innerHTML) {
           count++;
         }
-        if(count==3) {
-          console.log(first+" wins.");
+        if (count == 3) {
+          console.log(first + " wins.");
           is_gameover = true;
-          winner += first;
+          winner = first;
           console.log(winner);
           show_winner();
           return;
@@ -69,39 +70,39 @@ function check() {
   let c = 1;
   let f2 = "";
   let c2 = 1;
-  for(i=1,k=3;i<4;i++,k--) {
-    
-    for(j=1;j<4;j++) {
-      if(i==j) {
-        if(i==1) {
-          f = document.getElementById("box"+i+j).innerHTML;
-//          console.log(f);
+  for (i = 1, k = 3; i < 4; i++, k--) {
+
+    for (j = 1; j < 4; j++) {
+      if (i == j) {
+        if (i == 1) {
+          f = document.getElementById("box" + i + j).innerHTML;
+          //          console.log(f);
         } else {
-          if(f != "" && f == document.getElementById("box"+i+j).innerHTML) {
+          if (f != "" && f == document.getElementById("box" + i + j).innerHTML) {
             c++;
-//            console.log(c);
+            //            console.log(c);
           }
-          if(c == 3) {
-            console.log(f+" wins.");
+          if (c == 3) {
+            console.log(f + " wins.");
             is_gameover = true;
-            winner += f;
+            winner = f;
             console.log(winner);
             show_winner();
             return;
           }
         }
       }
-      if(j==k) {
-        if(i==1) {
-          f2 = document.getElementById("box"+i+j).innerHTML;
+      if (j == k) {
+        if (i == 1) {
+          f2 = document.getElementById("box" + i + j).innerHTML;
         } else {
-          if(f2 != "" && f2 == document.getElementById("box"+i+j).innerHTML) {
-            c2++;             
+          if (f2 != "" && f2 == document.getElementById("box" + i + j).innerHTML) {
+            c2++;
           }
-          if(c2==3) {
-            console.log(f2+" wins.");
+          if (c2 == 3) {
+            console.log(f2 + " wins.");
             is_gameover = true;
-            winner += f2;
+            winner = f2;
             console.log(winner);
             show_winner();
             return;
@@ -109,13 +110,36 @@ function check() {
         }
       }
     }
-    
+
   }
-//  console.log("running");
+  //  console.log("running");
 }
 
 function show_winner() {
-  if(winner != "") {
-    document.getElementById("result").innerHTML = "Yay!!! " +winner+ " is the winner.";
+  if (winner != "") {
+    document.getElementById("result").innerHTML = "Yay!!! " + winner + " is the winner.";
+  }
+}
+
+function reset_game() {
+  let boxes = document.querySelectorAll("td");
+  boxes.forEach(function (box) {
+    box.innerHTML = "";
+  });
+  document.querySelector("#result").innerHTML = "";
+  is_gameover = false;
+}
+
+function mark_ai() {
+  if (!is_gameover) {
+    let boxes = document.querySelectorAll("td");
+    let empty_boxes = [];
+    boxes.forEach(function (box) {
+      if(box.innerHTML == "") {
+        empty_boxes.push(box.id);
+      }
+    });
+    let ai_mark_id = empty_boxes[Math.floor(Math.random()*empty_boxes.length)];
+    mark(ai_mark_id);
   }
 }
